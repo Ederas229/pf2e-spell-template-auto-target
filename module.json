@@ -1,7 +1,7 @@
 {
   "id": "pf2e-spell-template-auto-target",
   "title": "PF2e Spell template auto target",
-  "description": "",
+  "description": "Auto-target for spell template",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
@@ -16,10 +16,6 @@
       "url": "https://github.com/Ederas229/"
     }
   ],
-  "relationships": {
-    "systems": ["pf2e"],
-    "requires": []
-  },
   "esmodules": [
     "scripts/module.js"
   ],
@@ -27,11 +23,5 @@
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
   "license": "LICENSE",
-  "readme": "README.md",
-  "media": [
-    {
-      "type": "icon",
-      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
-    }
-  ]
+  "readme": "README.md"
 }
