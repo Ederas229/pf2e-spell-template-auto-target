@@ -1,17 +1,14 @@
 Hooks.on('createMeasuredTemplate', async function(templateDoc){
 
+  if (originType(templateDoc) == 'spell'){
     templateDoc.object.draw();
     templateDoc.object.refresh();
-
     game.user.updateTokenTargets(findContained(templateDoc));
+  }
 
 });
 
-/**
- * Returns the tokenDocument ids that are contained within a templateDocument.
- *
- */
- export function findContained(templateDoc) {
+function findContained(templateDoc) {
     const { size } = templateDoc.parent.grid;
     const { x: tempx, y: tempy, object } = templateDoc;
     const tokenDocs = templateDoc.parent.tokens;
@@ -38,7 +35,7 @@ Hooks.on('createMeasuredTemplate', async function(templateDoc){
       }
     }
     return [...contained];
-  }
+}
 
 function returnDistance(template, token){
   let distance = tokenDistance(template, token);
@@ -95,4 +92,9 @@ function returnDistance(template, token){
       const distanceOnGrid = {distance:distance.distance * canvas.dimensions.distance, squares:distance.squares};
           return distanceOnGrid;
       }
+}
+
+function originType(templateDoc){
+  let orig = templateDoc.getFlag('pf2e', 'origin');
+  return (orig ? orig.type : false);
 }
