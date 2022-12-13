@@ -1,5 +1,5 @@
 Hooks.on('createMeasuredTemplate', async function(templateDoc){
-
+  detectCellPosition(templateDoc);
   if (originType(templateDoc) == 'spell'){
     templateDoc.object.draw();
     templateDoc.object.refresh();
@@ -26,7 +26,9 @@ function findContained(templateDoc) {
           };
           const contains = object.shape.contains(curr.x, curr.y);
           if (contains) {
+            console.log(returnDistance(templateDoc, tokenDoc));
             if (returnDistance(templateDoc, tokenDoc) <= templateDoc.distance){
+              
               contained.add(tokenDoc.id);
             }
             continue;
@@ -39,7 +41,7 @@ function findContained(templateDoc) {
 
 function returnDistance(template, token){
   let distance = tokenDistance(template, token);
-  return Math.ceil(distance)+5;
+  return Math.ceil(distance)+(detectCellPosition(template) == 'corner' ? 5 : 0);
   /*
     Total Distance between two tokens.
   */
@@ -97,4 +99,17 @@ function returnDistance(template, token){
 function originType(templateDoc){
   let orig = templateDoc.getFlag('pf2e', 'origin');
   return (orig ? orig.type : false);
+}
+
+function detectCellPosition(templateDoc){
+  console.log('test');
+  let x = templateDoc.x;
+  let y = templateDoc.y;
+  let center = canvas.grid.getCenter(x, y);
+  let position = 'corner';
+  if (x == center[0] && y == center[1]){
+    position = 'center';
+    console.log('center');
+  }
+  return position;
 }
