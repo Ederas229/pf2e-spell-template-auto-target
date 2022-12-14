@@ -2,9 +2,11 @@ Hooks.on('createMeasuredTemplate', async function(templateDoc){
 
   if (originType(templateDoc) == 'spell'){
 
-    templateDoc.object.draw();
-    templateDoc.object.refresh();
-    game.user.updateTokenTargets(findContained(templateDoc));
+    if (fromUuidSync(templateDoc.getFlag('pf2e', 'origin').uuid).system.damage.value[0]){
+      templateDoc.object.draw();
+      templateDoc.object.refresh();
+      game.user.updateTokenTargets(findContained(templateDoc));
+    }
   }
 
 });
