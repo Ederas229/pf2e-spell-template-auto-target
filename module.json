@@ -18,7 +18,18 @@
   ],
   "esmodules": [
     "scripts/module.js"
-  ],
+  ],"relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system",
+        "compatibility": {
+          "minimum":"4.4.0"
+        }
+
+      }    
+    ]
+  },
   "url": "This is auto replaced",
   "manifest": "This is auto replaced",
   "download": "This is auto replaced",
